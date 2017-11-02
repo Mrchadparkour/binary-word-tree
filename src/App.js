@@ -1,44 +1,51 @@
 import React, { Component } from 'react';
 import { setLeaf, setContext } from './d3Functions';
+import {makeTree} from './GrowTree';
 
-const testBinary = {
-  leaf: {
-    val: 10,
-    pos: 200,
-    left: {
-      val: 8,
-      left: null,
-      right: null
-    },
-    right: {
-      val: 12,
-      left: null,
-      right: {
-        val: 13,
-        left: null,
-        right: null
-      }
-    }
-  }
-};
+// const tree = {
+//   leaf: {
+//     val: 10,
+//     yPos: 200,
+//     xPos: 1000,
+//     left: {
+//       val: 8,
+//       yPos: 400,
+//       xPos: 890,
+//       left: null,
+//       right: {
+//         val: 9,
+//         yPos: 600,
+//         xPos: 790,
+//         left: null,
+//         right: null
+//       }
+//     },
+//     right: {
+//       val: 12,
+//       yPos: 400,
+//       xPos: 1100,
+//       left: null,
+//       right: null
+//     }
+//   }
+// };
+
+const tree = makeTree();
 
 class App extends Component {
   componentDidMount() {
     let context = setContext();
-    for (var i = 1; i < 10; i++ ) {
-      var spot = i * 200;
-      setLeaf(context, spot, i);
-    }
-    this.printTree(testBinary.leaf);
+    console.log(tree);
+    this.printTree(context, tree);
   }
 
-  printTree(leaf) {
-    console.log(leaf.val);
+  printTree(context, leaf) {
+    setLeaf(context, leaf.xPos, leaf.yPos, leaf.val);
     if (leaf.left != null) {
-      this.printTree(leaf.left);
+      this.printTree(context, leaf.left);
     }
     if (leaf.right != null) {
-      this.printTree(leaf.right);
+      this.printTree(context, leaf.right);
     }
 
   }

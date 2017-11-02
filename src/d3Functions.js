@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 const height = 1000;
-const width = 1000;
+const width = 2000;
 
 export const getColor = (i) => {
   let hVal = (Math.round(Math.random() * 360));
@@ -24,9 +24,9 @@ const arc = () => {
     .endAngle(Math.PI * 2);
 }
 
-export const setLeaf = (context, spot, id) => {
+export const setLeaf = (context, xPos, yPos, id) => {
   var color = getColor(2);
-  var test = context.append('g').attr('transform', `translate(${ width / 2 }, ${spot})`);
+  var test = context.append('g').attr('transform', `translate(${ xPos }, ${yPos})`);
   test.append('path')
   .attr('d', arc())
   .attr('id', 'leaf' + id)
