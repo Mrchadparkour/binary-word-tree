@@ -15,18 +15,29 @@ export const setContext = () => {
     .attr('preserveAspectRatio', 'xMinYMin')
 
 }
+export const drawLine = (context, leaf) => {
+  if (leaf.up !== null){
+    return context.append('line')
+            .style("stroke", "black")
+            .attr("x1", leaf.up.xPos)
+            .attr("y1", leaf.up.yPos)
+            .attr("x2", leaf.xPos)
+            .attr("y2", leaf.yPos);
+  }
+}
+
 
 const arc = () => {
   return d3.arc()
     .outerRadius(100)
-    .innerRadius(90)
+    .innerRadius(0)
     .startAngle(0)
     .endAngle(Math.PI * 2);
 }
 
-export const setLeaf = (context, xPos, yPos, id) => {
+export const setLeaf = (context, leaf, id) => {
   var color = getColor(2);
-  var test = context.append('g').attr('transform', `translate(${ xPos }, ${yPos})`);
+  var test = context.append('g').attr('transform', `translate(${ leaf.xPos }, ${ leaf.yPos })`);
   test.append('path')
   .attr('d', arc())
   .attr('id', 'leaf' + id)
@@ -42,4 +53,5 @@ export const setLeaf = (context, xPos, yPos, id) => {
   .attr("class", "arc-text")
   .attr("xlink:href", "#text" + id)
   .text(id);
+
 }
