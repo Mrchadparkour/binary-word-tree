@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
-const height = 1000;
-const width = 2000;
+const height = 2000;
+const width = 3000;
 
 export const getColor = (i) => {
   let hVal = (Math.round(Math.random() * 360));
@@ -29,7 +29,7 @@ export const drawLine = (context, leaf) => {
 
 const arc = () => {
   return d3.arc()
-    .outerRadius(100)
+    .outerRadius(50)
     .innerRadius(0)
     .startAngle(0)
     .endAngle(Math.PI * 2);
