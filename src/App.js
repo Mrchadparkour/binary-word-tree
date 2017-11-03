@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
 import { setLeaf, setContext, drawLine } from './d3Functions';
 import {makeTree} from './GrowTree';
 
-const tree = makeTree();
 
-class App extends Component {
+const App = observer(class App extends Component {
   componentDidMount() {
     let context = setContext();
+    const tree = makeTree(this.props.store.inputs);
     console.log(tree);
     this.printLines(context, tree);
     this.printTree(context, tree);
@@ -39,6 +40,6 @@ class App extends Component {
       </div>
     );
   }
-}
+})
 
 export default App;
