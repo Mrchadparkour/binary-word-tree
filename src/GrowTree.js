@@ -77,7 +77,5 @@ export const makeTree = (arr) => {
 
    let json = tree.getRoot();
 
-  //  console.log("depthCount is ", tree.getMaxDepth());
-   console.log(json);
    return json;
 }
